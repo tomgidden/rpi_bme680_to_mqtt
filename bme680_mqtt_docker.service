@@ -1,0 +1,15 @@
+[Unit]
+Description=GidTech BME680 Enviro-Pulse 2000 (Dockerized)
+After=network-online.target autofs.service docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --device /dev/i2c-1 --name bme680_to_mqtt tomgidden/rpi_bme680_to_mqtt
+ExecStop=/usr/bin/docker rm -f bme680_to_mqtt
+#WorkingDirectory=/nfs/miniprojects/environment-sensors
+User=root
+Group=daemon
+SyslogIdentifier=bme680_desk
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target
