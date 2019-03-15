@@ -1,4 +1,4 @@
-FROM python:slim
+FROM arm32v7/python:slim
 
 RUN mkdir /app
 
